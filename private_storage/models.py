@@ -1,6 +1,5 @@
 import mimetypes
 
-from django.core.files.storage import File, Storage
 from django.utils.functional import cached_property
 
 
@@ -11,7 +10,7 @@ class PrivateFile:
 
     def __init__(self, request, storage, relative_name, parent_object=None):
         self.request = request
-        self.storage = storage  # type: Storage
+        self.storage = storage
         self.relative_name = relative_name
         self.parent_object = parent_object
 
@@ -28,7 +27,7 @@ class PrivateFile:
         Open the file for reading.
         :rtype: django.core.files.storage.File
         """
-        file = self.storage.open(self.relative_name, mode=mode)  # type: File
+        file = self.storage.open(self.relative_name, mode=mode)
         return file
 
     def exists(self):
